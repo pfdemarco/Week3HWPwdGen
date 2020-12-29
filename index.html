@@ -17,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title">Step1: Select password length</h5>
             <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
-            <input type="number" min="8" max="128" step="1">
+            <input type="number" min="8" max="128" step="1" id="idNumChars" class="clsNumChars">
           </div>
         </div>
       </div>
@@ -71,8 +71,25 @@
     let Nums = document.getElementById("IncNum")
     let Syms = document.getElementById("IncSym")
     
-    var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var ind = Math.floor(Math.random() * 51) + 1;
+    var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var arrNum=["0","1","2","3","4","5","6","7","8","9"];
+    var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
+
+    function GetValFromArr(arrArray){
+      let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1]
+      return x;
+    }
+
+    //makle a for that loops from 0 - the number of characters selected and load a string value with the data
+    for (let intLoop = 0; intLoop <= )
+    //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
+    alert(GetValFromArr(arrUp)) ;
+    alert(GetValFromArr(arrLow)) ;
+    alert(GetValFromArr(arrNum)) ;
+    alert(GetValFromArr(arrSym)) ;
+    
+
     //alert(arrUp[ind];
 
     </script>
