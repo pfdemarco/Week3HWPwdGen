@@ -17,7 +17,7 @@
           <div class="card-body">
             <h5 class="card-title">Step1: Select password length</h5>
             <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
-            <input type="number" min="8" max="128" step="1" id="idNumChars" class="clsNumChars">
+            <input type="number" min="8" max="128" step="1" id="idNumChars">
           </div>
         </div>
       </div>
@@ -66,11 +66,13 @@
     //create uc array with regex
     //create sym array with regex
     //create num array with regex
-    let Upper = document.getElementById("IncUC")
-    let Lower = document.getElementById("IncLC")
-    let Nums = document.getElementById("IncNum")
-    let Syms = document.getElementById("IncSym")
-    
+    let Upper = document.getElementById("IncUC").value
+    let Lower = document.getElementById("IncLC").value
+    let Nums = document.getElementById("IncNum").value
+    let Syms = document.getElementById("IncSym").value
+    let Looper = document.getElementById("idNumChars").value
+    let strPwd = "";
+
     var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var arrNum=["0","1","2","3","4","5","6","7","8","9"];
@@ -81,8 +83,13 @@
       return x;
     }
 
-    //makle a for that loops from 0 - the number of characters selected and load a string value with the data
-    for (let intLoop = 0; intLoop <= )
+    //make a for that loops from 0 - the number of characters selected and load a string value with the data
+    for (let intLoop = 0; intLoop <= Looper; intLoop++){
+      if ((Upper == true){
+        strPwd= strPwd + GetValFromArr(arrUp);
+      }
+    }
+
     //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
     alert(GetValFromArr(arrUp)) ;
     alert(GetValFromArr(arrLow)) ;
