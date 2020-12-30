@@ -53,9 +53,9 @@
           <img src="./img/c_p.jpg" class="card-img-top" alt="Copy and Paste">
           <div class="card-body">
             <h5 class="card-title">Step 4: Copy your new password</h5>
-            <p class="card-text">Copy the password in this box</p>
+            <p class="card-text">Select all & copy the password in this box</p>
             <label for="pwd">Password:</label><br>
-            <input type="text" id="pwd" name="pwd">
+            <textarea id="pwd" name="pwd" rows="4" cols="32" maxlength="128"></textarea>
           </div>
         </div>
       </div>
@@ -100,15 +100,30 @@
           }
           if (Lower == true){
             //strPwd = strPwd + GetValFromArr(arrLow);
-            strPwd += arrLow[Math.floor(Math.random() * arrLow.length) + 1];
+            //strPwd += arrLow[Math.floor(Math.random() * arrLow.length) + 1];
+            var rando = Math.floor(Math.random() * (arrLow.length)+1);
+            if (rando > (arrLow.length-1)){
+              rando=arrLow.length-1;//force any index's above arr.length to arr.length-1
+            }
+            strPwd += arrLow[rando];
           }
           if (Nums == true){
             //strPwd = strPwd + GetValFromArr(arrNum);
-            strPwd +=  arrNum[Math.floor(Math.random() * arrNum.length) + 1];
+            //strPwd +=  arrNum[Math.floor(Math.random() * arrNum.length) + 1];
+            var rando = Math.floor(Math.random() * (arrNum.length)+1);
+            if (rando > (arrNum.length-1)){
+              rando=arrNum.length-1;//force any index's above arr.length to arr.length-1
+            }
+            strPwd += arrNum[rando];
           }
           if (Syms == true){
             //strPwd = strPwd + GetValFromArr(arrSym);
-            strPwd += arrSym[Math.floor(Math.random() * arrSym.length) + 1];
+            //strPwd += arrSym[Math.floor(Math.random() * arrSym.length) + 1];
+            var rando = Math.floor(Math.random() * (arrSym.length)+1);
+            if (rando > (arrSym.length-1)){
+              rando=arrSym.length-1;//force any index's above arr.length to arr.length-1
+            }
+            strPwd += arrSym[rando];
           }
         }
 
