@@ -63,61 +63,77 @@
 
 
     <script type ="text/javascript">
-    //create lc array with regex
-    //create uc array with regex
-    //create sym array with regex
-    //create num array with regex
-    function GoOnAndDoIt(){
-      let Upper = document.getElementById("IncUC").checked
-      let Lower = document.getElementById("IncLC").checked
-      let Nums = document.getElementById("IncNum").checked
-      let Syms = document.getElementById("IncSym").checked
-      let Looper = document.getElementById("idNumChars").value
-      let strPwd = "";
+      //create lc array with regex
+      //create uc array with regex
+      //create sym array with regex
+      //create num array with regex
+      function GoOnAndDoIt(){
+        let Upper = document.getElementById("IncUC").checked
+        let Lower = document.getElementById("IncLC").checked
+        let Nums = document.getElementById("IncNum").checked
+        let Syms = document.getElementById("IncSym").checked
+        let Looper = document.getElementById("idNumChars").value
+        let strPwd = "";
 
-      var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-      var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-      var arrNum=["0","1","2","3","4","5","6","7","8","9"];
-      var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
+        var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var arrNum=["0","1","2","3","4","5","6","7","8","9"];
+        var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
 
-      // function GetValFromArr(arrArray){
-      //   //let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1];
-      //   //return x;
-      //   return arrArray[Math.floor(Math.random() * arrArray.length) + 1];
-      // }
+        // function GetValFromArr(arrArray){
+        //   //let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1];
+        //   //return x;
+        //   return arrArray[Math.floor(Math.random() * arrArray.length) + 1];
+        // }
 
-      //make a for that loops from 0 - the number of characters selected and load a string value with the data
-      for (let intLoop = 0; strPwd.length <= Looper-1; intLoop++){
-        if (Upper == true) {
-          //strPwd= strPwd + GetValFromArr(arrUp);
-          strPwd = strPwd + arrUp[Math.floor(Math.random() * arrUp.length) + 1];
+        //make a for that loops from 0 - the number of characters selected and load a string value with the data
+        for (var intLoop = 0; intLoop < Looper; intLoop++){
+          if (strPwd.length >= Looper){break;}
+          if (Upper == true) {
+            //strPwd= strPwd + GetValFromArr(arrUp);
+            //strPwd += arrUp[Math.floor(Math.random() * arrUp.length) + 1];
+            var rando = Math.floor(Math.random() * (arrUp.length)+1);
+            if (rando > (arrUp.length-1)){
+              rando=arrUp.length-1;//force any index's above arr.length to arr.length-1
+            }
+            strPwd += arrUp[rando];
+          }
+          if (Lower == true){
+            //strPwd = strPwd + GetValFromArr(arrLow);
+            strPwd += arrLow[Math.floor(Math.random() * arrLow.length) + 1];
+          }
+          if (Nums == true){
+            //strPwd = strPwd + GetValFromArr(arrNum);
+            strPwd +=  arrNum[Math.floor(Math.random() * arrNum.length) + 1];
+          }
+          if (Syms == true){
+            //strPwd = strPwd + GetValFromArr(arrSym);
+            strPwd += arrSym[Math.floor(Math.random() * arrSym.length) + 1];
+          }
         }
-        if (Lower == true){
-          //strPwd = strPwd + GetValFromArr(arrLow);
-          strPwd =  strPwd + arrLow[Math.floor(Math.random() * arrLow.length) + 1];
-        }
-        if (Nums == true){
-          //strPwd = strPwd + GetValFromArr(arrNum);
-          strPwd =  strPwd + arrNum[Math.floor(Math.random() * arrNum.length) + 1];
-        }
-        if (Syms == true){
-          //strPwd = strPwd + GetValFromArr(arrSym);
-          strPwd =  strPwd + arrSym[Math.floor(Math.random() * arrSym.length) + 1];
-        }
+
+        document.getElementById("pwd").value = strPwd;
       }
-
-      document.getElementById("pwd").value = strPwd;
-
       //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
       //alert(GetValFromArr(arrUp)) ;
       //alert(GetValFromArr(arrLow)) ;
       //alert(GetValFromArr(arrNum)) ;
       //alert(GetValFromArr(arrSym)) ;
     
-    //alert(arrUp[ind];
-    }
-    
 
+
+      // var rando = Math.floor(Math.random() * (arrUp.length-1));
+      //     if (rando > (arrUp.length-1)){
+      //       rando=arrUp.length-1;
+      //     }
+      //     strPwd += arrUp[rando];
+      //     if (strPwd.search("undefined") != -1){
+      //       alert(rando);
+      //     }
+
+
+
+    //alert(arrUp[ind];
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
