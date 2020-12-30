@@ -44,7 +44,7 @@
           <div class="card-body">
             <h5 class="card-title">Step 3: Click Generate button</h5>
             <p class="card-text">To generate your new password please click the Generate button.</p>
-            <input type="button" onclick="" value="Generate PWD">
+            <input type="button" onclick="GoOnAndDoIt()" value="Generate PWD">
           </div>
         </div>
       </div>
@@ -61,43 +61,57 @@
       </div>
     </div>
 
+
     <script type ="text/javascript">
     //create lc array with regex
     //create uc array with regex
     //create sym array with regex
     //create num array with regex
-    let Upper = document.getElementById("IncUC").value
-    let Lower = document.getElementById("IncLC").value
-    let Nums = document.getElementById("IncNum").value
-    let Syms = document.getElementById("IncSym").value
-    let Looper = document.getElementById("idNumChars").value
-    let strPwd = "";
+    function GoOnAndDoIt(){
+      let Upper = document.getElementById("IncUC").checked
+      let Lower = document.getElementById("IncLC").checked
+      let Nums = document.getElementById("IncNum").checked
+      let Syms = document.getElementById("IncSym").checked
+      let Looper = document.getElementById("idNumChars").value
+      let strPwd = "";
 
-    var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var arrNum=["0","1","2","3","4","5","6","7","8","9"];
-    var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
+      var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+      var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+      var arrNum=["0","1","2","3","4","5","6","7","8","9"];
+      var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
 
-    function GetValFromArr(arrArray){
-      let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1]
-      return x;
-    }
-
-    //make a for that loops from 0 - the number of characters selected and load a string value with the data
-    for (let intLoop = 0; intLoop <= Looper; intLoop++){
-      if ((Upper == true){
-        strPwd= strPwd + GetValFromArr(arrUp);
+      function GetValFromArr(arrArray){
+        let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1]
+        return x;
       }
-    }
 
-    //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
-    alert(GetValFromArr(arrUp)) ;
-    alert(GetValFromArr(arrLow)) ;
-    alert(GetValFromArr(arrNum)) ;
-    alert(GetValFromArr(arrSym)) ;
+      //make a for that loops from 0 - the number of characters selected and load a string value with the data
+      for (let intLoop = 0; intLoop <= Looper; intLoop++){
+        if (Upper == true) {
+          strPwd= strPwd + GetValFromArr(arrUp);
+        }
+        if (Lower == true){
+          strPwd = strPwd + GetValFromArr(arrLow);
+        }
+        if (Nums == true){
+          strPwd = strPwd + GetValFromArr(arrNum);
+        }
+        if (Syms == true){
+          strPwd = strPwd + GetValFromArr(arrSym);
+        }
+      }
+
+      document.getElementById("pwd").value = strPwd;
+
+      //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
+      //alert(GetValFromArr(arrUp)) ;
+      //alert(GetValFromArr(arrLow)) ;
+      //alert(GetValFromArr(arrNum)) ;
+      //alert(GetValFromArr(arrSym)) ;
     
-
     //alert(arrUp[ind];
+    }
+    
 
     </script>
 
