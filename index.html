@@ -80,24 +80,29 @@
       var arrNum=["0","1","2","3","4","5","6","7","8","9"];
       var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
 
-      function GetValFromArr(arrArray){
-        let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1]
-        return x;
-      }
+      // function GetValFromArr(arrArray){
+      //   //let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1];
+      //   //return x;
+      //   return arrArray[Math.floor(Math.random() * arrArray.length) + 1];
+      // }
 
       //make a for that loops from 0 - the number of characters selected and load a string value with the data
-      for (let intLoop = 0; intLoop <= Looper; intLoop++){
+      for (let intLoop = 0; strPwd.length <= Looper-1; intLoop++){
         if (Upper == true) {
-          strPwd= strPwd + GetValFromArr(arrUp);
+          //strPwd= strPwd + GetValFromArr(arrUp);
+          strPwd = strPwd + arrUp[Math.floor(Math.random() * arrUp.length) + 1];
         }
         if (Lower == true){
-          strPwd = strPwd + GetValFromArr(arrLow);
+          //strPwd = strPwd + GetValFromArr(arrLow);
+          strPwd =  strPwd + arrLow[Math.floor(Math.random() * arrLow.length) + 1];
         }
         if (Nums == true){
-          strPwd = strPwd + GetValFromArr(arrNum);
+          //strPwd = strPwd + GetValFromArr(arrNum);
+          strPwd =  strPwd + arrNum[Math.floor(Math.random() * arrNum.length) + 1];
         }
         if (Syms == true){
-          strPwd = strPwd + GetValFromArr(arrSym);
+          //strPwd = strPwd + GetValFromArr(arrSym);
+          strPwd =  strPwd + arrSym[Math.floor(Math.random() * arrSym.length) + 1];
         }
       }
 
