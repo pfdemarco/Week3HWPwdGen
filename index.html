@@ -88,8 +88,9 @@
 
         //make a for that loops from 0 - the number of characters selected and load a string value with the data
         for (var intLoop = 0; intLoop < Looper; intLoop++){
-          if (strPwd.length >= Looper){break;}
+          
           if (Upper == true) {
+            if (strPwd.length >= Looper){break;}
             //strPwd= strPwd + GetValFromArr(arrUp);
             //strPwd += arrUp[Math.floor(Math.random() * arrUp.length) + 1];
             var rando = Math.floor(Math.random() * (arrUp.length)+1);
@@ -99,6 +100,7 @@
             strPwd += arrUp[rando];
           }
           if (Lower == true){
+            if (strPwd.length >= Looper){break;}
             //strPwd = strPwd + GetValFromArr(arrLow);
             //strPwd += arrLow[Math.floor(Math.random() * arrLow.length) + 1];
             var rando = Math.floor(Math.random() * (arrLow.length)+1);
@@ -108,6 +110,7 @@
             strPwd += arrLow[rando];
           }
           if (Nums == true){
+            if (strPwd.length >= Looper){break;}
             //strPwd = strPwd + GetValFromArr(arrNum);
             //strPwd +=  arrNum[Math.floor(Math.random() * arrNum.length) + 1];
             var rando = Math.floor(Math.random() * (arrNum.length)+1);
@@ -117,6 +120,7 @@
             strPwd += arrNum[rando];
           }
           if (Syms == true){
+            if (strPwd.length >= Looper){break;}
             //strPwd = strPwd + GetValFromArr(arrSym);
             //strPwd += arrSym[Math.floor(Math.random() * arrSym.length) + 1];
             var rando = Math.floor(Math.random() * (arrSym.length)+1);
