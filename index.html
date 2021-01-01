@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta>
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pat's Password Generator</title>
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel ="stylesheet" href="styln.css">
@@ -10,7 +10,7 @@
   <body>
 
     <!--do i want to say Step 1 Step 2 Step 3 etc in these 4 card areas
-    make 4 areas 1 for each step in the process could be sexier or maybe a slider /-->
+    make 4 areas 1 for each step in the process could be sexier or maybe a slider/carosel /-->
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div class="col">
         <div class="card">
@@ -65,7 +65,7 @@
 
     <script type ="text/javascript">    
 
-      function checkData(dataEntry){
+      function funcCheckData(dataEntry){
         if (dataEntry < 8 || dataEntry > 128){//check the num char
           return false;
         }
@@ -82,6 +82,7 @@
       }
 
       function funcGeneratePassword(){
+        //should i pull these out and make them global to the script? it works so not yet.
         let Upper = document.getElementById("IncUC").checked //get the check val for upper
         let Lower = document.getElementById("IncLC").checked //get the check val for lower
         let Nums = document.getElementById("IncNum").checked //get the check val for numbers
@@ -99,15 +100,14 @@
         //make a for that loops from 0 - the number of characters selected -1 and load a string value with the data
         //base the string off of UC, LC, NUms, Syms I cheat here and the randomness is knid of controlled and has somewhat of a pattern
         for (var intLoop = 0; intLoop < Looper; intLoop++){
-          if (checkData(Looper) == false){
-            //document.getElementById("idNumChars").value = "";
+          if (funcCheckData(Looper) == false){//if they screw up 8-128 reset everything and kick em out
             funcResetForm();
             break;}
           if (Upper == true) {//if they checked include upper case letters
-            if (strPwd.length >= Looper){break;}//if the lenght of the password is greater than or equal to the length entered beat it
+            if (strPwd.length >= Looper){break;}//if the length of the password is greater than or equal to the length entered beat it
             var rando = Math.floor(Math.random() * (arrUp.length) + 1);//get a random number from 0 to the upper limit of the array -1
-            if (rando > (arrUp.length - 1)){//I was getting a undefined and it was because I would get a upper limit +1 of the array and it would barf
-              rando = arrUp.length - 1;//force any index's above arr.length to arr.length-1
+            if (rando > (arrUp.length - 1)){//I was getting an undefined and it was because I would get a upper limit +1 of the array and it would barf
+              rando = arrUp.length - 1;//force any index's above arr.length to arr.length-1 basically give them the upper most element of the array
             }
             strPwd += arrUp[rando];
           }
@@ -136,7 +136,6 @@
             strPwd += arrSym[rando];
           }
         }
-
         document.getElementById("pwd").value = strPwd;
       }     
     </script>
