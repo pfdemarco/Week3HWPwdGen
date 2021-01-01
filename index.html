@@ -27,7 +27,7 @@
           <img src="./img/chartype.jpg" class="card-img-top" alt="Character Types">
           <div class="card-body">
             <h5 class="card-title">Step 2: Select character types</h5>
-            <p class="card-text">Click each character type you want to include in your password (MUST select 1).</p>
+            <p class="card-text">Click each character type you want to include in your password (you MUST select 1).</p>
             <input type="checkbox" id="IncUC" name="UC" value="">
             <label for="IncUC"> Include Upper Case characters?</label><br>
             <input type="checkbox" id="IncLC" name="LC" value="">
@@ -45,7 +45,7 @@
           <div class="card-body">
             <h5 class="card-title">Step 3: Click Generate button</h5>
             <p class="card-text">To generate your new password please click the Generate button.</p>
-            <input type="button" onclick="GoOnAndDoIt()" value="Generate PWD">
+            <input type="button" onclick="funcGeneratePassword()" value="Generate PWD">
           </div>
         </div>
       </div>
@@ -72,7 +72,16 @@
         else {return true;} 
       }
 
-      function GoOnAndDoIt(){
+      function funcResetForm(){
+        document.getElementById("IncUC").checked=false;
+        document.getElementById("IncLC").checked = false;
+        document.getElementById("IncNum").checked = false;
+        document.getElementById("IncSym").checked = false;
+        document.getElementById("idNumChars").value = "";
+        document.getElementById("pwd").value = "";
+      }
+
+      function funcGeneratePassword(){
         let Upper = document.getElementById("IncUC").checked //get the check val for upper
         let Lower = document.getElementById("IncLC").checked //get the check val for lower
         let Nums = document.getElementById("IncNum").checked //get the check val for numbers
@@ -91,7 +100,8 @@
         //base the string off of UC, LC, NUms, Syms I cheat here and the randomness is knid of controlled and has somewhat of a pattern
         for (var intLoop = 0; intLoop < Looper; intLoop++){
           if (checkData(Looper) == false){
-            document.getElementById("idNumChars").value = "";
+            //document.getElementById("idNumChars").value = "";
+            funcResetForm();
             break;}
           if (Upper == true) {//if they checked include upper case letters
             if (strPwd.length >= Looper){break;}//if the lenght of the password is greater than or equal to the length entered beat it
