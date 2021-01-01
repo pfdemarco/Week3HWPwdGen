@@ -9,7 +9,8 @@
   </head>
   <body>
 
-    <!--do i want to say Step 1 Step 2 Step 3 etc in these 4 card areas-->
+    <!--do i want to say Step 1 Step 2 Step 3 etc in these 4 card areas
+    make 4 areas 1 for each step in the process could be sexier or maybe a slider /-->
     <div class="row row-cols-1 row-cols-md-2 g-4">
       <div class="col">
         <div class="card">
@@ -17,7 +18,7 @@
           <div class="card-body">
             <h5 class="card-title">Step1: Select password length</h5>
             <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
-            <input type="number" min="8" max="128" step="1" id="idNumChars">
+            <input type="number" inputmode = "numeric" min="8" max="128" step="1" id="idNumChars">
           </div>
         </div>
       </div>
@@ -26,7 +27,7 @@
           <img src="./img/chartype.jpg" class="card-img-top" alt="Character Types">
           <div class="card-body">
             <h5 class="card-title">Step 2: Select character types</h5>
-            <p class="card-text">Click each character type you want to include in your password.</p>
+            <p class="card-text">Click each character type you want to include in your password (MUST select 1).</p>
             <input type="checkbox" id="IncUC" name="UC" value="">
             <label for="IncUC"> Include Upper Case characters?</label><br>
             <input type="checkbox" id="IncLC" name="LC" value="">
@@ -62,97 +63,72 @@
     </div>
 
 
-    <script type ="text/javascript">
-      //create lc array with regex
-      //create uc array with regex
-      //create sym array with regex
-      //create num array with regex
-      function GoOnAndDoIt(){
-        let Upper = document.getElementById("IncUC").checked
-        let Lower = document.getElementById("IncLC").checked
-        let Nums = document.getElementById("IncNum").checked
-        let Syms = document.getElementById("IncSym").checked
-        let Looper = document.getElementById("idNumChars").value
-        let strPwd = "";
+    <script type ="text/javascript">    
 
+      function checkData(dataEntry){
+        if (dataEntry < 8 || dataEntry > 128){//check the num char
+          return false;
+        }
+        else {return true;} 
+      }
+
+      function GoOnAndDoIt(){
+        let Upper = document.getElementById("IncUC").checked //get the check val for upper
+        let Lower = document.getElementById("IncLC").checked //get the check val for lower
+        let Nums = document.getElementById("IncNum").checked //get the check val for numbers
+        let Syms = document.getElementById("IncSym").checked //get the check val for symbols
+        let Looper = document.getElementById("idNumChars").value //get the number of characters 
+        let strPwd = "";//the password
+        
+        //make the arrays that contain UC, LC, Numbers, and symbols
+        //would like to make this in a 1 liner with regular epressions have to play with that
         var arrUp=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
         var arrLow=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
         var arrNum=["0","1","2","3","4","5","6","7","8","9"];
         var arrSym=["~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "{", "}", "[", "]", "|", ":", "<", ">", ".", "?", "/"];
 
-        // function GetValFromArr(arrArray){
-        //   //let x = arrArray[Math.floor(Math.random() * arrArray.length) + 1];
-        //   //return x;
-        //   return arrArray[Math.floor(Math.random() * arrArray.length) + 1];
-        // }
-
-        //make a for that loops from 0 - the number of characters selected and load a string value with the data
+        //make a for that loops from 0 - the number of characters selected -1 and load a string value with the data
+        //base the string off of UC, LC, NUms, Syms I cheat here and the randomness is knid of controlled and has somewhat of a pattern
         for (var intLoop = 0; intLoop < Looper; intLoop++){
-          
-          if (Upper == true) {
-            if (strPwd.length >= Looper){break;}
-            //strPwd= strPwd + GetValFromArr(arrUp);
-            //strPwd += arrUp[Math.floor(Math.random() * arrUp.length) + 1];
-            var rando = Math.floor(Math.random() * (arrUp.length)+1);
-            if (rando > (arrUp.length-1)){
-              rando=arrUp.length-1;//force any index's above arr.length to arr.length-1
+          if (checkData(Looper) == false){
+            document.getElementById("idNumChars").value = "";
+            break;}
+          if (Upper == true) {//if they checked include upper case letters
+            if (strPwd.length >= Looper){break;}//if the lenght of the password is greater than or equal to the length entered beat it
+            var rando = Math.floor(Math.random() * (arrUp.length) + 1);//get a random number from 0 to the upper limit of the array -1
+            if (rando > (arrUp.length - 1)){//I was getting a undefined and it was because I would get a upper limit +1 of the array and it would barf
+              rando = arrUp.length - 1;//force any index's above arr.length to arr.length-1
             }
             strPwd += arrUp[rando];
           }
           if (Lower == true){
-            if (strPwd.length >= Looper){break;}
-            //strPwd = strPwd + GetValFromArr(arrLow);
-            //strPwd += arrLow[Math.floor(Math.random() * arrLow.length) + 1];
+            if (strPwd.length >= Looper){break;}//if the lenght of the password is greater than or equal to the length entered beat it
             var rando = Math.floor(Math.random() * (arrLow.length)+1);
             if (rando > (arrLow.length-1)){
-              rando=arrLow.length-1;//force any index's above arr.length to arr.length-1
+              rando = arrLow.length - 1;//force any index's above arr.length to arr.length-1
             }
             strPwd += arrLow[rando];
           }
           if (Nums == true){
             if (strPwd.length >= Looper){break;}
-            //strPwd = strPwd + GetValFromArr(arrNum);
-            //strPwd +=  arrNum[Math.floor(Math.random() * arrNum.length) + 1];
             var rando = Math.floor(Math.random() * (arrNum.length)+1);
             if (rando > (arrNum.length-1)){
-              rando=arrNum.length-1;//force any index's above arr.length to arr.length-1
+              rando = arrNum.length - 1;//force any index's above arr.length to arr.length-1
             }
             strPwd += arrNum[rando];
           }
           if (Syms == true){
             if (strPwd.length >= Looper){break;}
-            //strPwd = strPwd + GetValFromArr(arrSym);
-            //strPwd += arrSym[Math.floor(Math.random() * arrSym.length) + 1];
             var rando = Math.floor(Math.random() * (arrSym.length)+1);
             if (rando > (arrSym.length-1)){
-              rando=arrSym.length-1;//force any index's above arr.length to arr.length-1
+              rando = arrSym.length - 1;//force any index's above arr.length to arr.length-1
             }
             strPwd += arrSym[rando];
           }
         }
 
         document.getElementById("pwd").value = strPwd;
-      }
-      //alert(arrUp[Math.floor(Math.random() * arrUp.length) + 1]) ;
-      //alert(GetValFromArr(arrUp)) ;
-      //alert(GetValFromArr(arrLow)) ;
-      //alert(GetValFromArr(arrNum)) ;
-      //alert(GetValFromArr(arrSym)) ;
-    
-
-
-      // var rando = Math.floor(Math.random() * (arrUp.length-1));
-      //     if (rando > (arrUp.length-1)){
-      //       rando=arrUp.length-1;
-      //     }
-      //     strPwd += arrUp[rando];
-      //     if (strPwd.search("undefined") != -1){
-      //       alert(rando);
-      //     }
-
-
-
-    //alert(arrUp[ind];
+      }     
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
@@ -160,3 +136,49 @@
 
   </body>
 </html>
+
+
+<!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./img/pwd.jpg" class="d-block w-100" alt="...">
+      <h5 class="card-title">Step1: Select password length</h5>
+      <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
+      <input type="number" min="8" max="128" step="1" id="idNumChars">
+    </div>
+    <div class="carousel-item">
+      <img src="./img/chartype.jpg" class="d-block w-100" alt="...">
+      <h5 class="card-title">Step 2: Select character types</h5>
+      <p class="card-text">Click each character type you want to include in your password.</p>
+      <input type="checkbox" id="IncUC" name="UC" value="">
+      <label for="IncUC"> Include Upper Case characters?</label><br>
+      <input type="checkbox" id="IncLC" name="LC" value="">
+      <label for="IncLC"> Include Lower Case characters?</label><br>
+      <input type="checkbox" id="IncNum" name="Num" value="">
+      <label for="vehicle3"> Include numbers?</label><br>
+      <input type="checkbox" id="IncSym" name="Sym" value="">
+      <label for="vehicle3"> Include symbols?</label>
+    </div>
+    <div class="carousel-item">
+      <img src="./img/gen.jpg" class="d-block w-100" alt="...">
+      <h5 class="card-title">Step 3: Click Generate button</h5>
+      <p class="card-text">To generate your new password please click the Generate button.</p>
+      <input type="button" onclick="GoOnAndDoIt()" value="Generate PWD">
+    </div>
+    <div class="carousel-item">
+      <img src="./img/c_p.jpg" class="d-block w-100" alt="...">
+      <h5 class="card-title">Step 4: Copy your new password</h5>
+      <p class="card-text">Select all & copy the password in this box</p>
+      <label for="pwd">Password:</label><br>
+      <textarea id="pwd" name="pwd" rows="4" cols="32" minlength="8" maxlength="128"></textarea>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div> -->
