@@ -5,13 +5,30 @@
   box-sizing: inherit;
 }
 
-.card{
+.card{/*really need to up my game with css and bootstrap and making things look better*/
   width: inherit;
   padding: inherit;
   top: 25px;
   left: 50px;
   bottom: 50px;
   right: 25px;
-  
+  border-radius: rounded;
 }
 
+.headR{/*styling for the header of the page*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: groove;
+  font-size: xx-large;
+}
+
+.clsButt{/*make the button rounded*/
+  background-color:rgb(180, 180, 180);
+  border-radius: 8px;
+  transition-duration: 0.5s;
+}
+
+.clsButt:hover{/*this wont translate to mobile devices??*/
+  background-color:rgb(38, 180, 38)
+}

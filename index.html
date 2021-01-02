@@ -9,6 +9,10 @@
   </head>
   <body>
 
+    <header>
+      <div class="headR">Password Generator</div>
+    </header>
+
     <!--do i want to say Step 1 Step 2 Step 3 etc in these 4 card areas
     make 4 areas 1 for each step in the process could be sexier or maybe a slider/carosel /-->
     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -44,8 +48,8 @@
           <img src="./img/gen.jpg" class="card-img-top" alt="Generate Password">
           <div class="card-body">
             <h5 class="card-title">Step 3: Click Generate button</h5>
-            <p class="card-text">To generate your new password please click the Generate button.</p>
-            <input type="button" onclick="funcGeneratePassword()" value="Generate PWD">
+            <p class="card-text">To generate your new password please click the Generate PWD button.</p>
+            <input type="button" class="clsButt" onclick="funcGeneratePassword()" value="Generate PWD">
           </div>
         </div>
       </div>
@@ -53,8 +57,8 @@
         <div class="card">
           <img src="./img/c_p.jpg" class="card-img-top" alt="Copy and Paste">
           <div class="card-body">
-            <h5 class="card-title">Step 4: Copy your new password</h5>
-            <p class="card-text">Select all & copy the password in this box</p>
+            <h5 class="card-title">Step 4: Use your new password</h5>
+            <p class="card-text">You can now paste your new password it is saved to the clipboard already.</p>
             <label for="pwd">Password:</label><br>
             <textarea id="pwd" name="pwd" rows="4" cols="32" maxlength="128"></textarea>
           </div>
@@ -62,17 +66,16 @@
       </div>
     </div>
 
-
     <script type ="text/javascript">    
 
       function funcCheckData(dataEntry){
-        if (dataEntry < 8 || dataEntry > 128){//check the num char
+        if (dataEntry < 8 || dataEntry > 128){//check the num char is between 8-128
           return false;
         }
         else {return true;} 
       }
 
-      function funcResetForm(){
+      function funcResetForm(){//reset the form as if from scratch
         document.getElementById("IncUC").checked=false;
         document.getElementById("IncLC").checked = false;
         document.getElementById("IncNum").checked = false;
@@ -109,7 +112,7 @@
             if (rando > (arrUp.length - 1)){//I was getting an undefined and it was because I would get a upper limit +1 of the array and it would barf
               rando = arrUp.length - 1;//force any index's above arr.length to arr.length-1 basically give them the upper most element of the array
             }
-            strPwd += arrUp[rando];
+            strPwd += arrUp[rando];//append the random array value in the string
           }
           if (Lower == true){
             if (strPwd.length >= Looper){break;}//if the lenght of the password is greater than or equal to the length entered beat it
@@ -136,7 +139,15 @@
             strPwd += arrSym[rando];
           }
         }
-        document.getElementById("pwd").value = strPwd;
+        if (strPwd != ""){//if there is a password copy it and stick it in the clipboard automagically
+          document.getElementById("pwd").value = strPwd;
+          var copyPwd = document.getElementById("pwd");
+
+          //copy the test now to into clipboard
+          copyPwd.select();
+          copyPwd.setSelectionRange(0, 1000);
+          document.execCommand("copy");
+        }
       }     
     </script>
 
@@ -190,4 +201,36 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </a>
-</div> -->
+</div> 
+<section class="clsNumChars">
+      <h5 class="card-title">Step1: Select password length</h5>
+      <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
+      <input type="number" inputmode = "numeric" min="8" max="128" step="1" id="idNumChars">
+    </section>
+
+    <section class="clsSelectTypes">
+      <h5 class="card-title">Step 2: Select character types</h5>
+      <p class="card-text">Click each character type you want to include in your password (you MUST select 1).</p>
+      <input type="checkbox" id="IncUC" name="UC" value="">
+      <label for="IncUC"> Include Upper Case characters?</label><br>
+      <input type="checkbox" id="IncLC" name="LC" value="">
+      <label for="IncLC"> Include Lower Case characters?</label><br>
+      <input type="checkbox" id="IncNum" name="Num" value="">
+      <label for="vehicle3"> Include numbers?</label><br>
+      <input type="checkbox" id="IncSym" name="Sym" value="">
+      <label for="vehicle3"> Include symbols?</label>
+    </section>
+
+    <section class="clsGenPwd">
+      <h5 class="card-title">Step 3: Click Generate button</h5>
+      <p class="card-text">To generate your new password please click the Generate button.</p>
+      <input type="button" onclick="funcGeneratePassword()" value="Generate PWD">
+    </section>
+
+    <section class="clsCopyPastePwd">
+      <h5 class="card-title">Step 4: Copy your new password</h5>
+      <p class="card-text">Select all & copy the password in this box</p>
+      <label for="pwd">Password:</label><br>
+      <textarea id="pwd" name="pwd" rows="4" cols="32" maxlength="128"></textarea>
+    </section>
+-->
