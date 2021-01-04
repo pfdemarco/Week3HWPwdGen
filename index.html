@@ -9,62 +9,76 @@
   </head>
   <body>
 
+    <!--Create a bootstrap card area 2x2 and make a step by step entry
+    user input Number of characters 8-128.
+    user input checkbox for Upper Case, Lower Case, Numbers, Symbols
+    user input button to click to generate the passwords based on inputs above
+    upon successful completion and button click copy the generated password to the clipboard
+    add ons, check for valid user entry.
+    add ons, if invalid = true reset form 
+    need to have an array from Upper Case, Lower Case, Numbers, Symbols
+    need to pick from those arrays based on check boxes (user input)
+    need to get random values from those arrays using math.random
+    once we hit the user entry for num characters finish up and leave.
+    -->
     <header>
       <div class="headR">Password Generator</div>
     </header>
 
     <!--do i want to say Step 1 Step 2 Step 3 etc in these 4 card areas
     make 4 areas 1 for each step in the process could be sexier or maybe a slider/carosel /-->
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <div class="col">
-        <div class="card">
-          <img src="./img/pwd.jpg" class="card-img-top" alt="Password Length">
-          <div class="card-body">
-            <h5 class="card-title">Step1: Select password length</h5>
-            <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
-            <input type="number" inputmode = "numeric" min="8" max="128" step="1" id="idNumChars">
+    <container>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="./img/pwd.jpg" class="card-img-top" alt="Password Length">
+            <div class="card-body">
+              <h5 class="card-title">Step1: Select password length</h5>
+              <p class="card-text">Please select a value from 8-128 characters long for your password.</p>
+              <input type="number" inputmode = "numeric" min="8" max="128" step="1" id="idNumChars">
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="./img/chartype.jpg" class="card-img-top" alt="Character Types">
+            <div class="card-body">
+              <h5 class="card-title">Step 2: Select character types</h5>
+              <p class="card-text">Click each character type you want to include in your password (you MUST select 1).</p>
+              <input type="checkbox" id="IncUC" name="UC" value="">
+              <label for="IncUC"> Include Upper Case characters?</label><br>
+              <input type="checkbox" id="IncLC" name="LC" value="">
+              <label for="IncLC"> Include Lower Case characters?</label><br>
+              <input type="checkbox" id="IncNum" name="Num" value="">
+              <label for="IncNum"> Include numbers?</label><br>
+              <input type="checkbox" id="IncSym" name="Sym" value="">
+              <label for="IncSym"> Include symbols?</label>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="./img/gen.jpg" class="card-img-top" alt="Generate Password">
+            <div class="card-body">
+              <h5 class="card-title">Step 3: Click Generate button</h5>
+              <p class="card-text">To generate your new password please click the Generate PWD button.</p>
+              <input type="button" class="clsButt" onclick="funcGeneratePassword()" value="Generate PWD">
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="./img/c_p.jpg" class="card-img-top" alt="Copy and Paste">
+            <div class="card-body">
+              <h5 class="card-title">Step 4: Use your new password</h5>
+              <p class="card-text">You can now paste your new password it is saved to the clipboard already.</p>
+              <label for="pwd">Password:</label><br>
+              <textarea id="pwd" name="pwd" rows="4" cols="20" maxlength="128"></textarea>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card">
-          <img src="./img/chartype.jpg" class="card-img-top" alt="Character Types">
-          <div class="card-body">
-            <h5 class="card-title">Step 2: Select character types</h5>
-            <p class="card-text">Click each character type you want to include in your password (you MUST select 1).</p>
-            <input type="checkbox" id="IncUC" name="UC" value="">
-            <label for="IncUC"> Include Upper Case characters?</label><br>
-            <input type="checkbox" id="IncLC" name="LC" value="">
-            <label for="IncLC"> Include Lower Case characters?</label><br>
-            <input type="checkbox" id="IncNum" name="Num" value="">
-            <label for="vehicle3"> Include numbers?</label><br>
-            <input type="checkbox" id="IncSym" name="Sym" value="">
-            <label for="vehicle3"> Include symbols?</label>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="./img/gen.jpg" class="card-img-top" alt="Generate Password">
-          <div class="card-body">
-            <h5 class="card-title">Step 3: Click Generate button</h5>
-            <p class="card-text">To generate your new password please click the Generate PWD button.</p>
-            <input type="button" class="clsButt" onclick="funcGeneratePassword()" value="Generate PWD">
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="./img/c_p.jpg" class="card-img-top" alt="Copy and Paste">
-          <div class="card-body">
-            <h5 class="card-title">Step 4: Use your new password</h5>
-            <p class="card-text">You can now paste your new password it is saved to the clipboard already.</p>
-            <label for="pwd">Password:</label><br>
-            <textarea id="pwd" name="pwd" rows="4" cols="32" maxlength="128"></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
+    </container>
 
     <script type ="text/javascript">    
 

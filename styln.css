@@ -1,18 +1,26 @@
+.body{
+  margin: 2rem;
+
+}
 .card-img-top{
-  height: 150px;
-  width: 150px;
-  position: inherit;
-  box-sizing: inherit;
+  height: 125px;
+  width: 125px;
+  position: relative;
+  margin: 0;
+  transform: translate(0,10%);
 }
 
 .card{/*really need to up my game with css and bootstrap and making things look better*/
   width: inherit;
-  padding: inherit;
+  padding: 1rem;
   top: 25px;
   left: 50px;
   bottom: 50px;
   right: 25px;
-  border-radius: rounded;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1rem;
 }
 
 .headR{/*styling for the header of the page*/
@@ -31,4 +39,12 @@
 
 .clsButt:hover{/*this wont translate to mobile devices??*/
   background-color:rgb(38, 180, 38)
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
